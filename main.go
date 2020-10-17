@@ -2,6 +2,7 @@ package main
 
 import (
 	"strconv"
+	"time"
 
 	"github.com/warthog618/gpiod"
 	// "github.com/warthog618/gpiod/device/rpi"
@@ -24,6 +25,10 @@ const (
 	WATER   int = 6
 	DRAIN   int = 12
 	JUICE   int = 16
+	X1      int = 19
+	X2      int = 20
+	X3      int = 21
+	X4      int = 26
 )
 
 var PINS = []int{
@@ -60,6 +65,10 @@ func main() {
 	water := makePin(chip, WATER)
 	drain := makePin(chip, DRAIN)
 	juice := makePin(chip, JUICE)
+	x1 := makePin(chip, X1)
+	x2 := makePin(chip, X2)
+	x3 := makePin(chip, X3)
+	x4 := makePin(chip, X4)
 
 	r := gin.Default()
 	r.StaticFile("/", "./public")
@@ -89,6 +98,14 @@ func main() {
 			drain.SetValue(value)
 		case "juice":
 			juice.SetValue(value)
+		case "x1":
+			x1.SetValue(value)
+		case "x2":
+			x2.SetValue(value)
+		case "x3":
+			x3.SetValue(value)
+		case "x4":
+			x4.SetValue(value)
 		}
 
 		c.JSON(200, gin.H{
@@ -97,6 +114,20 @@ func main() {
 			"value":   value,
 		})
 	})
+	r.POST("/shake/:sleeptime/:iter", func(c *gin.Context) {
+		sleeptime, _ := strconv.ParseInt(c.Param("sleeptime"), 10, 64)
+		iterations, _ := strconv.Atoi(c.Param("iter"))
+
+		for i := 0; i < iterations; i++ {
+			x2.SetValue(1)
+			time.Sleep(time.Duration(sleeptime) * time.Millisecond)
+			x2.SetValue(0)
+			time.Sleep(time.Duration(sleeptime) * time.Millisecond)
+		}
+
+		c.JSON(200, gin.H{})
+	})
+
 	log.Println("http://192.168.1.45:8080")
 	r.Run() // listen and serve on 0.0.0.0:8080
 }
