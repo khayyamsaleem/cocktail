@@ -5,6 +5,6 @@ main: main.go
 
 deploy:
 	scp main pi@192.168.1.45:/home/pi/main
-	scp -r ./public pi@192.168.1.45:/home/pi/public/
+	scp -r ./public pi@192.168.1.45:/home/pi/
 
 .PHONY: all deploy

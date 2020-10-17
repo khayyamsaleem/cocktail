@@ -4,11 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hey</title>
+    <style>
+        body {
+            margin: 40px auto;
+            max-width: 650px;
+            line-height: 1.6;
+            font-size: 18px;
+            color: #0f0;
+            background: black;
+            font-family: monospace;
+            padding: 0 10px;
+        }
+
+        a,
+        a:visited {
+            color: #7b7bff;
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2
+        }
+
+        button {
+            font-size: 2rem;
+            background: #0f0;
+            border: 5px solid white;
+            margin: 3px;
+        }
+
+        button:hover {
+            background: #000;
+            border: 5px solid #0f0;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-   yoooo 
-   <button onclick="fetch('/pump/liquor0/1', {method: 'POST'})">
-    doit
-   </button>
+    
+    <h1><marquee>Drinkbot</marquee></h1>
+    <button onclick="fetch('/pump/liquor0/1', {method: 'POST'})">Liquor 0 on</button>
+    <button onclick="fetch('/pump/liquor0/0', {method: 'POST'})">Liquor 0 off</button>
+    <br/>
+    <button onclick="fetch('/pump/liquor1/1', {method: 'POST'})">Liquor 1 on</button>
+    <button onclick="fetch('/pump/liquor1/0', {method: 'POST'})">Liquor 1 off</button>
+    <br/>
+    <button onclick="fetch('/pump/liquor2/1', {method: 'POST'})">Liquor 2 on</button>
+    <button onclick="fetch('/pump/liquor2/0', {method: 'POST'})">Liquor 2 off</button>
+    <br/>
+    <button onclick="fetch('/pump/liquor3/1', {method: 'POST'})">Liquor 3 on</button>
+    <button onclick="fetch('/pump/liquor3/0', {method: 'POST'})">Liquor 3 off</button>
+    <br/>
+    <button onclick="fetch('/pump/liquor4/1', {method: 'POST'})">Liquor 4 on</button>
+    <button onclick="fetch('/pump/liquor4/0', {method: 'POST'})">Liquor 4 off</button>
+    <br/>
+    <button onclick="fetch('/pump/drain/1', {method: 'POST'})">Drain on</button>
+    <button onclick="fetch('/pump/drain/0', {method: 'POST'})">Drain off</button>
+    <br/>
+    <button onclick="fetch('/pump/juice/1', {method: 'POST'})">Juice on</button>
+    <button onclick="fetch('/pump/juice/0', {method: 'POST'})">Juice off</button>
+    <br/>
+    <button onclick="fetch('/pump/water/1', {method: 'POST'})">Water on</button>
+    <button onclick="fetch('/pump/water/0', {method: 'POST'})">Water off</button>
 </body>
 </html>
